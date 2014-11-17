@@ -26,18 +26,21 @@
     NSURLSessionDataTask *_dataTask;
 }
 
+@synthesize key = _key;
+
 - (instancetype)initWithURL:(NSURL*)URL
+{
+    return [self initWithURL:URL key:URL.absoluteString];
+}
+
+- (instancetype)initWithURL:(NSURL*)URL key:(NSString *)key
 {
     if (self = [super init])
     {
         _URL = URL;
+        _key = key;
     }
     return self;
-}
-
-- (NSString*)key
-{
-    return _URL.absoluteString;
 }
 
 - (void)fetchImageWithSuccess:(void (^)(UIImage *image))successBlock failure:(void (^)(NSError *error))failureBlock;

@@ -59,6 +59,22 @@
     [self hnk_setImageFromFetcher:fetcher placeholder:placeholder success:successBlock failure:failureBlock];
 }
 
+- (void)hnk_setImageFromURL:(NSURL*)url key:(NSString *)key
+{
+    [self hnk_setImageFromURL:url key:key placeholder:nil success:nil failure:nil];
+}
+
+- (void)hnk_setImageFromURL:(NSURL*)url key:(NSString *)key placeholder:(UIImage *)placeholder
+{
+    [self hnk_setImageFromURL:url key:key placeholder:placeholder success:nil failure:nil];
+}
+
+- (void)hnk_setImageFromURL:(NSURL*)url key:(NSString *)key placeholder:(UIImage*)placeholder success:(void (^)(UIImage *image))successBlock failure:(void (^)(NSError *error))failureBlock
+{
+    id<HNKFetcher> fetcher = [[HNKNetworkFetcher alloc] initWithURL:url key:key];
+    [self hnk_setImageFromFetcher:fetcher placeholder:placeholder success:successBlock failure:failureBlock];
+}
+
 - (void)hnk_setImage:(UIImage*)originalImage withKey:(NSString*)key
 {
     [self hnk_setImage:originalImage withKey:key placeholder:nil success:nil failure:nil];

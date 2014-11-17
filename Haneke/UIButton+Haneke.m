@@ -45,6 +45,22 @@
     [self hnk_setImageFromFetcher:fetcher forState:state placeholder:placeholder success:successBlock failure:failureBlock];
 }
 
+- (void)hnk_setImageFromURL:(NSURL*)url key:(NSString *)key forState:(UIControlState)state
+{
+    [self hnk_setImageFromURL:url key:key forState:state placeholder:nil success:nil failure:nil];
+}
+
+- (void)hnk_setImageFromURL:(NSURL*)url key:(NSString *)key forState:(UIControlState)state placeholder:(UIImage *)placeholder
+{
+    [self hnk_setImageFromURL:url key:key forState:state placeholder:placeholder success:nil failure:nil];
+}
+
+- (void)hnk_setImageFromURL:(NSURL*)url key:(NSString *)key forState:(UIControlState)state placeholder:(UIImage*)placeholder success:(void (^)(UIImage *image))successBlock failure:(void (^)(NSError *error))failureBlock
+{
+    id<HNKFetcher> fetcher = [[HNKNetworkFetcher alloc] initWithURL:url key:key];
+    [self hnk_setImageFromFetcher:fetcher forState:state placeholder:placeholder success:successBlock failure:failureBlock];
+}
+
 - (void)hnk_setImageFromFile:(NSString*)path forState:(UIControlState)state
 {
     [self hnk_setImageFromFile:path forState:state placeholder:nil];

@@ -40,6 +40,13 @@ enum
 - (instancetype)initWithURL:(NSURL*)URL;
 
 /**
+ Initializes a fetcher with the given URL and key.
+ @param URL Image URL.
+ @param key Key with which to cache the image.
+ */
+- (instancetype)initWithURL:(NSURL*)URL key:(NSString *)key;
+
+/**
  Image URL.
  */
 @property (nonatomic, readonly) NSURL *URL;
